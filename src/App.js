@@ -2,6 +2,7 @@ import {useEffect, useReducer} from "react";
 import StyledHero from "./components/styled/Hero.styled";
 import Feed from "./components/Feed.component";
 import SearchBar from "./components/SearchBar.component";
+import {Routes, Route} from "react-router-dom";
 
 const ACCESS_KEY = process.env.REACT_APP_UNSPLASH_ACCESS_KEY || "";
 
@@ -57,7 +58,7 @@ const App = () => {
 
   const getRandomFeedImages = async () => {
     try {
-      const response = await fetch("https://api.unsplash.com/photos", {
+      const response = await fetch("https://api.unsplash.com/photos/?per_page=25", {
         headers: {
           Authorization: `Client-ID ${ACCESS_KEY}`
         },
@@ -75,6 +76,7 @@ const App = () => {
           <SearchBar/> 
        </StyledHero>
 
+      
        <Feed imagesList={state.imagesList}/>
     </>
   );

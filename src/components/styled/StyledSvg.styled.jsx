@@ -7,7 +7,6 @@ const StyledSvg = styled.svg`
     transform: translateY(-50%);
     width: 18px;
     height: 18px;
-    color: grey;
 `;
 
 export default StyledSvg;

@@ -10,6 +10,8 @@ const StyledHero = styled.div`
     background-repeat: none;
     background-size: cover;
     background-position: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: overlay;
 `;
 
 export default StyledHero;
