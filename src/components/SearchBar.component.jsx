@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StyledSearchBarContainer from "./styled/SearchBarContainer.styled";
 import StyledSvg from "./styled/StyledSvg.styled";
 import StyledSearchBar from "./styled/SearchBar.styled";
@@ -18,7 +18,14 @@ const SearchBar = () => {
     if (event.key === "Enter") {
       navigate(`/search/${input}`);
     }
-  };
+   };
+
+   useEffect(() => {
+        if(pathname === "/") {
+            setInput("");
+        }
+   }, [pathname]);
+
   return (
     <>
       <StyledSearchBarContainer>
