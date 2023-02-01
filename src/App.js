@@ -4,6 +4,7 @@ import Gallery from "./components/Gallery.component";
 import SearchBar from "./components/SearchBar.component";
 import {Routes, Route} from "react-router-dom";
 import SearchGallery from "./components/SearchGallery.component";
+import Home from "./routes/Home";
 
 const ACCESS_KEY = process.env.REACT_APP_UNSPLASH_ACCESS_KEY || "";
 
@@ -93,13 +94,11 @@ const App = () => {
 
   return (
     <>
-       <StyledHero bg={state.heroBgImage}>
-          <SearchBar/> 
-       </StyledHero>
-
       <Routes>
-        <Route path="/" element={<Gallery imagesList={state.imagesList}/>}/>
-        <Route path="/search/:query" element={<SearchGallery getSearchImages={getSearchImages} imagesList={state.searchImagesList}/>}/>
+        <Route path="/" element={<Home state={state}/>}>
+            <Route index element={<Gallery imagesList={state.imagesList}/>}/>
+            <Route path="/search/:query" element={<SearchGallery getSearchImages={getSearchImages} imagesList={state.searchImagesList}/>}/>
+        </Route>
       </Routes>
     </>
   );

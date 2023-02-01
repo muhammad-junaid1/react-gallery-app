@@ -7,7 +7,7 @@ const SearchGallery = ({getSearchImages, imagesList}) => {
 
     useEffect(() => {
         getSearchImages(query);
-    }, []);
+    }, [query, getSearchImages]);
 
     return (
         <>
