@@ -1,19 +1,20 @@
-import StyledFeed from "./styled/StyledFeed.styled";
+import StyledGallery from "./styled/StyledGallery.styled";
 import Masonry from "react-masonry-css";
 import "./styles/masonry.css";
 
-const Feed = ({imagesList}) => {
+const Gallery = ({imagesList, searchGallery, query}) => {
     return (
         <>
-            <StyledFeed>
+            <StyledGallery>
+            {searchGallery && <h1 style={{marginBottom: 50}}>Search results for: "{query}"</h1>}
             <Masonry breakpointCols={3} className="my-masonry" columnClassName="my-masonry_column">
                 {imagesList.map((image) => {
                     return <img key={image.id} src={image.urls.regular} alt={image.alt_description}/>
                 })}
                 </Masonry>
-            </StyledFeed>
+            </StyledGallery>
         </>
     );
 }
 
-export default Feed;
+export default Gallery;

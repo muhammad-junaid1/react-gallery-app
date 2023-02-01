@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledFeed = styled.div`
+const StyledGallery = styled.div`
   max-width: 80%;
   margin: 80px auto;
 
@@ -11,4 +11,4 @@ const StyledFeed = styled.div`
     }
 `;
 
-export default StyledFeed;
+export default StyledGallery;
