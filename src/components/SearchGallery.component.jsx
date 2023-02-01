@@ -6,8 +6,9 @@ const SearchGallery = ({getSearchImages, imagesList}) => {
     const {query} = useParams();
 
     useEffect(() => {
-        getSearchImages(query);
-    }, [query, getSearchImages]);
+        window.scrollTo(0, 250);
+         getSearchImages(query);
+    }, [query]);
 
     return (
         <>

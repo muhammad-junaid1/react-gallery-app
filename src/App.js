@@ -1,7 +1,5 @@
 import {useEffect, useReducer} from "react";
-import StyledHero from "./components/styled/Hero.styled";
 import Gallery from "./components/Gallery.component";
-import SearchBar from "./components/SearchBar.component";
 import {Routes, Route} from "react-router-dom";
 import SearchGallery from "./components/SearchGallery.component";
 import Home from "./routes/Home";
