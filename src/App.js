@@ -1,11 +1,13 @@
 import {useEffect, useReducer} from "react";
 import StyledHero from "./components/styled/Hero.styled";
+import Feed from "./components/Feed.component";
 import SearchBar from "./components/SearchBar.component";
 
 const ACCESS_KEY = process.env.REACT_APP_UNSPLASH_ACCESS_KEY || "";
 
 const ACTIONS = {
-  SET_HERO_BG: "SET_HERO_BG"
+  SET_HERO_BG: "SET_HERO_BG",
+  SET_IMAGES_LIST: "SET_IMAGES_LIST"
 };
 
 const reducer = (state, action) => {
@@ -13,16 +15,19 @@ const reducer = (state, action) => {
     case ACTIONS.SET_HERO_BG:
       return {...state, heroBgImage: action.payload};
 
-      default:
-        console.log("Unhandled action in reducer.");
-        return state;
+    case ACTIONS.SET_IMAGES_LIST:
+      return {...state, imagesList: action.payload};
+
+    default:
+      console.log("Unhandled action in reducer.");
+      return state;
   }
 }
 
 const initialState = {
   searchQuery: "",
   filter: "",
-  imagesData: [],
+  imagesList: [],
   heroBgImage: "",
 };
 
@@ -31,21 +36,36 @@ const App = () => {
 
   useEffect(() => {
     getRandomImage();
+    getRandomFeedImages();
   }, []);
 
   const getRandomImage = async () => {
     try {
-      const response = await fetch(`https://api.unsplash.com/photos/random?query=nature"`, {
+      const response = await fetch("https://api.unsplash.com/photos/random?query=nature", {
         headers: {
           Authorization: `Client-ID ${ACCESS_KEY}`
         },
       });
       const data = await response.json();
-      
-      const imgUrl = data.urls.full;
+
+      const imgUrl = data.urls.regular;
       dispatch({type: ACTIONS.SET_HERO_BG, payload: imgUrl});
     } catch (error) {
       console.log(error); 
+    }
+  }
+
+  const getRandomFeedImages = async () => {
+    try {
+      const response = await fetch("https://api.unsplash.com/photos", {
+        headers: {
+          Authorization: `Client-ID ${ACCESS_KEY}`
+        },
+      }); 
+      const data = await response.json();
+      dispatch({type: ACTIONS.SET_IMAGES_LIST, payload: data});
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -54,6 +74,8 @@ const App = () => {
        <StyledHero bg={state.heroBgImage}>
           <SearchBar/> 
        </StyledHero>
+
+       <Feed imagesList={state.imagesList}/>
     </>
   );
 }
