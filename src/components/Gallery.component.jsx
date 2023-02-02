@@ -6,6 +6,11 @@ import Popup from "./Popup.component";
 import Overlay from "./styled/Overlay.styled";
 import Image from "./Image.component";
 
+const breakpointColumnsObj = {
+    default: 3,
+    768: 2
+};
+
 const Gallery = ({imagesList, searchGallery, query}) => {
     const [popupInfo, setPopupInfo] = useState(false);
 
@@ -16,7 +21,7 @@ const Gallery = ({imagesList, searchGallery, query}) => {
         <>
             <StyledGallery>
             {searchGallery && <h1 style={{marginBottom: 50}}>Search results for: "{query}"</h1>}
-            <Masonry breakpointCols={3} className="my-masonry" columnClassName="my-masonry_column">
+            <Masonry breakpointCols={breakpointColumnsObj} className="my-masonry" columnClassName="my-masonry_column">
                 {imagesList.length ? imagesList.map((image) => {
                     return <Image onClick={() => handleClick(image)} key={image.id} image={image}/>
             }) : <h1 style={{color: "red", textAlign: "center"}}>Nothing Found!</h1>}
