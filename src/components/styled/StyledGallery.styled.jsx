@@ -8,6 +8,12 @@ const StyledGallery = styled.div`
         max-width: 100%;
         margin-bottom: 14px;
         border-radius: 20px;
+        cursor: pointer;
+        transition: transform .1s ease-in-out;
+
+        &:hover {
+          transform: scale(0.98);
+        }
     }
 `;
 
